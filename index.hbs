@@ -5,6 +5,20 @@ into the {body} of the default.hbs template --}}
 {{!-- Main --}}
 <main id="main">
 
+    
+    {{#is "home"}}
+    {{#get "posts" slug="home-contact"as |homecontent|}}
+        {{#if homecontent}}{{#foreach homecontent}}
+            <section>
+                <header class="major">
+                    <h2>{{title}}</h2>
+                </header>
+                {{homecontent}}
+            </section>
+        {{/foreach}}{{/if}}
+    {{/get}}
+    {{/is}}
+
     {{!-- Featured Post --}}
     {{#is "home"}}
     {{#get "posts" filter="featured:true" limit="1" as |featured_post|}}
@@ -27,7 +41,7 @@ into the {body} of the default.hbs template --}}
     {{/is}}
 
     {{!-- Posts --}}
-    <section class="posts">
+    {{!-- <section class="posts">
 
         {{#foreach posts}}
         <article>
@@ -45,9 +59,9 @@ into the {body} of the default.hbs template --}}
         </article>
         {{/foreach}}
 
-    </section>
+    </section> --}}
 
     {{!-- Pagination --}}
-    {{pagination}}
+    {{!-- {{pagination}} --}}
 
 </main>
